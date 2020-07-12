@@ -1,0 +1,93 @@
+FUNCTION CONT-NODES(const,btnode:INTEGER  root:bst ) : INTEGER
+
+BEGIN
+    count:=1
+    IF (root^.left!=NULL) THEN
+        count+=CONT-NODES(root^.left)
+    END_IF
+    
+    IF (root^.right!=NULL) THEN
+        count+=CONT-NODES(root^.right)
+    END_IF
+    return count;
+END
+
+
+FUNCTION getheight(root:^bst) : INTEGER
+
+BEGIN
+    IF (root == NULL) THEN
+        return 0;
+    ELSE_IF (root^.left != NULL || root^.right != NULL)
+    
+            return 1 + max(getHeight(root^.left), getHeight(root.^right));
+    ELSE
+        return 0;
+    END_IF
+
+END
+FUNCTION max(a,b:INTEGER) : INTEGER
+BEGIN
+IF (a<b) THEN
+    return b;
+ELSE
+    return a;
+END_IF
+END
+FUNCTION maxdepth(node:) : INTEGER
+BEGIN
+    IF (node) THEN
+        return max(maxdepth(node.left),maxdepth(node.right))
+    ELSE
+        return 0 ;
+    END_IF
+END
+FUNCTION fullbinarytree(root : ^bst) : BOOLEAN
+VAR
+    bool : BOOLEAN;
+BEGIN
+//empty tree
+IF (root = NULL) THEN
+        bool:=true;
+//leafe node
+ELSE_IF (root^.LC = NULL    AND root^.LC = NULL) THEN
+        state:=true;
+//left and right node not null
+ELSE_IF (fullbinarytree(root^.LC) and fullbinarytree(root^.RC)) THEN
+        bool:=true;
+ELSE
+        bool:=false;
+END_IF
+RETURN bool;
+END
+
+ALGORITHM tree
+VAR
+bst:	STRUCT
+                
+         val: INTEGER
+         left,right:^bst
+
+END STRUCT
+  const,max,height:INTEGER
+  complet:BOOLEAN
+BEGIN
+
+ cont:=CONT-NODES(const,btnode; root )
+ write(cont)
+ height:=getheight(node, root)
+ write(height)
+ max:=maxdepth(node)
+ write(max)
+ complet:=fullbinarytree(root)
+ write(complet)
+END
+
+
+
+
+
+
+
+
+
